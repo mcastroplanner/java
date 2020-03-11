@@ -1,0 +1,29 @@
+import javax.swing.*;
+public class Arrays_1 {
+	public static void main(String[] args) {
+		System.out.println("Matrices, Arrays distintas formas de declararlas, inicializarlas, recorrerlas e imprimir su contenido");
+		
+				//Forma de declarar una matriz.
+		int [] mi_matriz = new int [5];
+		//Forma de inicializar los valores que contendrá.
+		mi_matriz [0]=5;
+		mi_matriz [1]=4;
+		mi_matriz [2]=-2;
+		mi_matriz [3]=6;
+		mi_matriz [4]=-8;
+		
+		System.out.println(mi_matriz[0]);
+		System.out.println(mi_matriz[1]);
+		System.out.println(mi_matriz[2]);
+		System.out.println(mi_matriz[3]);
+		System.out.println(mi_matriz[4]);
+		System.out.println("********************************************");
+		
+		//Otra forma de declarar una matriz e inicializar los valores que contendrá.
+		int [] mi_matriz1 = {3, 50, 40, 23, 49};
+				//Otra forma de recorrer la matriz e imprimir los valores que contiene.
+		for (int i=0; i<mi_matriz1.length; i++){
+			System.out.println("Valor del indice "+i+" de mi_matriz1 es "+mi_matriz[i]);
+		}
+		}
+}
