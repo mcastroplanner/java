@@ -1,0 +1,77 @@
+package graficos;
+import java.awt.BorderLayout; import java.awt.Font; import java.awt.event.*; import javax.swing.JFrame; import javax.swing.JMenu; import javax.swing.JMenuBar;
+import javax.swing.JMenuItem; import javax.swing.JPanel; import javax.swing.JTextPane;
+import javax.swing.text.StyledEditorKit;
+
+public class Procesador106 {//CLASE PRINCIPAL.
+	public static void main(String[] args){	//METODO PRINCIPAL.
+		MenuProcesadorA mimarco=new MenuProcesadorA(); //INSTANCIO EL MARCO SOBRE EL QUE TRABAJARE.
+		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //INDICO QUE AL CERRAR LA VENTANA SE CIERRA EL PROGRAMA.
+		mimarco.setVisible(true); //HAGO VISIBLE AL MARCO.
+		}
+}
+class MenuProcesadorA extends JFrame{ //Clase para instanciar Objetos Marco.
+	public MenuProcesadorA(){ //Constructor de Marcos.
+		setBounds(500,300,550,400); //ASIGNO POSICION Y TAMAGNO AL MARCO.
+		LaminaProcesadorA milamina=new LaminaProcesadorA(); //INSTANCIO LA LAMINA EN LA QUE INCRUSTARE LA BARRA DE MENU.
+		add(milamina); //AGREGO LA LAMINA AL MARCO.
+		setVisible(true); //HAGO VISIBLE LA LAMINA.
+	}
+}
+class LaminaProcesadorA extends JPanel{ //Clase para instanciar Objetos Lamina.
+	public LaminaProcesadorA(){ //Constructor de laminas.
+		setLayout(new BorderLayout());
+		JPanel laminamenu=new JPanel(); //Instancio una Lamina.
+		JMenuBar mibarra=new JMenuBar(); //Instancio una Barra de Menu.
+		//Instancio1°BotonMenu-InstancioBotonesSubMenu->AgregoBotonSubMenuAlBotonMenu.
+		fuente=new JMenu("Fuente"); //Instancio Boton Barra Menu.
+		estilo=new JMenu("Estilo");	//Instancio Boton Barra Menu.
+		tamagno=new JMenu("Tamaño"); //Instancio Boton Barra Menu.
+		configura_menu("Arial", "fuente","Arial", 9, 10); //Instancia y agrega Boton SubMenu a Boton Menu. 9y10 no lo utilizo.
+		configura_menu("Courier", "fuente","Courier", 9, 10); //Instancia y agrega Boton SubMenu a Boton Menu. 9y10 no lo utilizo.		
+		configura_menu("Verdana", "fuente","Verdana", 9, 10); //Instancia y agrega Boton SubMenu a Boton Menu. 9y10 no lo utilizo.				 
+		//--------------------------------------------------------------------
+		configura_menu("Negrita", "estilo","", Font.BOLD, 1); //Instancia y agrega Boton SubMenu a Boton Menu."" y 1 no se usa.	
+		configura_menu("Cursiva", "estilo","", Font.ITALIC, 1); //Instancia y agrega Boton SubMenu a Boton Menu."" y 1 no se usa.		
+		//--------------------------------------------------------------------		
+		configura_menu("12", "tamaño","", 9, 12); //Instancia y agrega Boton SubMenu a Boton Menu. "" y 9 no se usa.	Verrrrrrrrrrr
+		configura_menu("16", "tamaño","", 9, 16); //Instancia y agrega Boton SubMenu a Boton Menu. "" y 9 no se usa.			
+		configura_menu("20", "tamaño","", 9, 20); //Instancia y agrega Boton SubMenu a Boton Menu. "" y 9 no se usa.			
+		configura_menu("24", "tamaño","", 9, 24); //Instancia y agrega Boton SubMenu a Boton Menu. "" y 9 no se usa.			
+		//AgregoBotonesMenuABarraMenu----------------------------------------	
+		mibarra.add(fuente);
+		mibarra.add(estilo);	
+		mibarra.add(tamagno);
+		//AgregoBarraMenuALamina + AgregoLAyoutALamina-----------------------	
+		laminamenu.add(mibarra);
+		add(laminamenu,BorderLayout.NORTH);
+		miarea=new JTextPane();
+		add(miarea,BorderLayout.CENTER);		
+	} //Cierre del Constructor.
+	public void configura_menu(String rotulo, String menu, String tipo_letra, int estilos, int tam){
+		JMenuItem elem_menu=new JMenuItem(rotulo);
+		if(menu=="fuente"){
+			fuente.add(elem_menu);
+			if(tipo_letra=="Arial"){
+				elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra", "Arial"));
+			}else if(tipo_letra=="Courier"){
+				elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra", "Courier"));	
+			}else if(tipo_letra=="Verdana"){
+				elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra", "Verdana"));
+			}			
+		}else if(menu=="estilo"){
+			estilo.add(elem_menu);
+			if(estilos==Font.BOLD){
+				elem_menu.addActionListener(new StyledEditorKit.BoldAction());
+			}else if(estilos==Font.ITALIC){
+			elem_menu.addActionListener(new StyledEditorKit.ItalicAction());
+			}
+		}else if(menu=="tamaño"){
+			tamagno.add(elem_menu);
+			elem_menu.addActionListener(new StyledEditorKit.FontSizeAction("cambia_tamaño", tam));
+		}
+	}	
+	JTextPane miarea;
+	JMenu fuente, estilo, tamagno;
+	Font letras;
+} //Cierre Clase Padre Lamina...
